@@ -102,18 +102,4 @@ impl<'a> PngDecoder<'a> {
         }
         Ok(())
     }
-
-    fn sum_big_endian(bytes: &[u8]) -> Result<u32, Box<dyn Error>> {
-        if bytes.len() != 4 {
-            return Err(Box::new(std::io::Error::new(
-                std::io::ErrorKind::InvalidData,
-                "Not enough bytes to read a u32",
-            )));
-        }
-
-        Ok(((bytes[0] as u32) << 24)
-            | ((bytes[1] as u32) << 16)
-            | ((bytes[2] as u32) << 8)
-            | (bytes[3] as u32))
-    }
 }
